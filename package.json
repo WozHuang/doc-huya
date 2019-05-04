@@ -1,0 +1,23 @@
+{
+  "name": "doc-huya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WozHuang/doc-huya.git"
+  },
+  "author": "WozHuang",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/WozHuang/doc-huya/issues"
+  },
+  "homepage": "https://github.com/WozHuang/doc-huya#readme",
+  "dependencies": {
+    "vuepress": "^1.0.0-alpha.47"
+  }
+}
