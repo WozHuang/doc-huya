@@ -29,7 +29,8 @@
 |pageNo |是  |Number |页数   |
 
  **返回示例**
-``` 
+
+```json
 {
     "gameFullName": "英雄联盟",
     "gameHostName": "lol",
@@ -119,9 +120,7 @@
 
  **返回示例**
 ``` 
-{
-
-}
+{}
 ```
  **返回参数说明** 
 
@@ -139,13 +138,13 @@
 
 |参数名|类型|说明|
 |:-----|:-----|-----|
-|sex|String|性别,1:男,2:女|
+|sex|Number|性别,1:男,2:女|
 |lp|String|---|
-|aid|String|---|
+|aid|Number|---|
 |yyid|String|---|
 |nick|String|昵称|
 |avatar|String|头像地址|
-|fans|String|订阅数|
+|fans|Number|订阅数|
 |freezeLevel|String|---|
 |host|String|个人host(尽量不用)|
 |profileRoom|String|房间id|
@@ -158,55 +157,94 @@
 |:-----|:-----|-----|
 |type|String| --- |
 |state|String| 当前状态 |
-|isOn|String| --- |
-|isOff|String| --- |
-|isReplay|String| --- |
-|isPayRoom|String| --- |
-|roomPayPassword|String| --- |
-|id|String| --- |
-|sid|String| --- |
-|channel|String| --- |
-|liveChannel|String| --- |
-|liveId|String| --- |
-|shortChannel|String| --- |
+|isOn|Boolean| --- |
+|isOff|Boolean| --- |
+|isReplay|Boolean| --- |
+|isPayRoom|Boolean| --- |
+|roomPayPassword|Number| --- |
+|id|Number| --- |
+|sid|Number| --- |
+|channel|Number| --- |
+|liveChannel|Number| --- |
+|liveId|Number| --- |
+|shortChannel|Number| --- |
 |isBluRay|String| 蓝光 |
 |gameFullName|String|分类名|
 |gameHostName|String|分类对应的英文id|
-|screenType|String| --- |
-|startTime|String| 开始直播时间 |
-|totalCount|String| 人气 |
-|cameraOpen|String| --- |
-|liveCompatibleFlag|String| --- |
-|bussType|String| --- |
+|screenType|Number| --- |
+|startTime|Number| 开始直播时间 |
+|totalCount|Number| 人气 |
+|cameraOpen|Number| --- |
+|liveCompatibleFlag|Number| --- |
+|bussType|Number| --- |
 |isPlatinum|String| --- |
 |screenshot|String| 屏幕画面 |
 |previewUrl|String| --- |
 |gameId|String| --- |
-|liveSourceType|String| --- |
+|liveSourceType|Number| --- |
 |privateHost|String| 个人host |
 |profileRoom|String| 房间id |
-|recommendStatus|String| --- |
+|recommendStatus|Number| --- |
 |popular|String| --- |
-|gid|String| --- |
+|gid|Number| --- |
 |introduction|String| 房间标题 |
-|isRedirectHuya|String| --- |
-|isShowMmsProgramList|String| --- |
+|isRedirectHuya|Number| --- |
+|isShowMmsProgramList|Boolean| --- |
 
  **hyPlayerConfig**
 
 直播流相关信息
 
+hyPlayerConfig.stream.data[0].gameLiveInfo: 房间相关信息
+
 |参数名|类型|说明|
 |:-----|:-----|-----|
-|TT_PROFILE_INFO|String|分类名|
-|gameHostName|String|分类对应的英文id|
-|boxDataInfo|String|---|
+|bitRate|String| 默认的清晰度 |
 
+hyPlayerConfig.stream.data[0].gameStreamInfoList:存放直播流的数组,有多少个元素代表有多少条直播线路
+
+|参数名|类型|说明|
+|:-----|:-----|-----|
+|sCdnType|String| CDN的名称 |
+|iIsMaster|Number| --- |
+|lChannelId|Number| --- |
+|lSubChannelId|Number| --- |
+|lPresenterUid|Number| --- |
+|sStreamName|String| 直播流名称 |
+|sFlvUrl|String| FLV地址 |
+|sFlvUrlSuffix|String| FLV后缀 |
+|sFlvAntiCode|String| FLV鉴权码 |
+|sHlsUrl|String| HLS地址 |
+|sHlsUrlSuffix|String| HLS地址后缀 |
+|sHlsAntiCode|String| HLS鉴权码 |
+|iLineIndex|String| 线路编号 |
+|iIsMultiStream|String| 多码率线路? |
+|iPCPriorityRate|String| PC优先级 |
+|iWebPriorityRate|String| Web优先级 |
+|iMobilePriorityRate|String| 移动端优先级 |
+|vFlvIPList|String| --- |
+|iIsP2PSupport|String| 支持P2P |
+|sP2pUrl|String| P2P地址 |
+|sP2pUrlSuffix|String| P2P后缀 |
+|sP2pAntiCode|String| P2P鉴权码 |
+|lFreeFlag|String| --- |
+|newCFlvAntiCode|String| --- |
+
+FLV地址:
+
+```js
+`${data.sFlvUrl}/${data.sStreamName}.${data.sFlvUrlSuffix}?${data.sFlvAntiCode}` 
+```
+
+HLS地址:
+
+```js
+`${data.sHlsUrl}/${data.sStreamName}.${data.sFlvUrlSuffix}?${data.sFlvAntiCode}`
+```
 
  **备注** 
 
 - 更多返回错误代码请看首页的错误代码描述
-
 
 
 
@@ -232,7 +270,7 @@
 |name     |否  |string | 昵称    |
 
  **返回示例**
-``` 
+```json
   {
     "error_code": 0,
     "data": {

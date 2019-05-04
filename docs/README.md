@@ -40,7 +40,7 @@
 |name     |否  |string | 昵称    |
 
  **返回示例**
-``` 
+```json 
   {
     "error_code": 0,
     "data": {
