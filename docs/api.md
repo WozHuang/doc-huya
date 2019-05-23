@@ -95,10 +95,7 @@
 
  **备注** 
 
-- 更多返回错误代码请看首页的错误代码描述
-
-
-
+- screenshot加上后缀 `?x-oss-process=image/resize,limit_0,m_fill,w_338,h_190/sharpen,80/format,webp/quality,q_90`能够取到`338x190`的小图
 
 ## 获取直播详情
 
@@ -119,7 +116,7 @@
 |host |是  |String |房间号(profileRoom)或别称(privateHost,尽量不用)   |
 
  **返回示例**
-``` 
+```json
 {}
 ```
  **返回参数说明** 
@@ -232,19 +229,98 @@ hyPlayerConfig.stream.data[0].gameStreamInfoList:存放直播流的数组,有多
 
 FLV地址:
 
-```js
+```
 `${data.sFlvUrl}/${data.sStreamName}.${data.sFlvUrlSuffix}?${data.sFlvAntiCode}` 
 ```
 
 HLS地址:
 
-```js
+```
 `${data.sHlsUrl}/${data.sStreamName}.${data.sFlvUrlSuffix}?${data.sFlvAntiCode}`
 ```
 
- **备注** 
+## 获取 websocket 地址
 
-- 更多返回错误代码请看首页的错误代码描述
+**简要描述：** 
+
+- 获取弹幕、礼物、用户进场信息的websocket地址
+
+**请求URL：** 
+- ` /getNotice?host=11342412 `
+  
+**请求方式：**
+- GET 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:----    |:---|:----- |-----   |
+|host |是  |string | 房间号    |
+
+ **返回示例**
+```json
+{
+  "getMessageNotice": "wss://openapi.huya.com/index.html?do=getMessageNotice&data={\"roomId\":11342412}&appId=155289872835739286&timestamp=1558514640&sign=2f542e3e8692433206bb9cf64d123b87",
+  "getSendItemNotice": "wss://openapi.huya.com/index.html?do=getSendItemNotice&data={\"roomId\":11342412}&appId=155289872835739286&timestamp=1558514640&sign=2f542e3e8692433206bb9cf64d123b87",
+  "getVipEnterBannerNotice": "wss://openapi.huya.com/index.html?do=getVipEnterBannerNotice&data={\"roomId\":11342412}&appId=155289872835739286&timestamp=1558514640&sign=2f542e3e8692433206bb9cf64d123b87"
+}
+```
+ **返回参数说明** 
+
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|getMessageNotice |string   |普通弹幕接口  |
+|getSendItemNotice |string   |礼物接口  |
+|getVipEnterBannerNotice |string   |高级用户进场信息接口  |
+
+**备注**
+
+弹幕接口地址示例：
+
+```
+wss://openapi.huya.com/index.html?do=getMessageNotice&data={"roomId":11342412}&appId=155289872835739286&timestamp=1558518190&sign=f945881550da4dfc9711115cf0e0ec63
+```
+
+消息示例：
+
+```json
+{
+  badgeName: "楚河"
+  content: "我坏嘛"
+  fansLevel: 8
+  nobleLevel: 0
+  roomid: 11342412
+  sendNick: "来自二次元的兔子"
+  senderAvatarUrl: "https://huyaimg.msstatic.com/avatar/1017/32/d2b290d76febcb8e3d3cb3e7a9289d_180_135.jpg?1534911631"
+  senderGender: 1
+  showMode: 0
+}
+```
+
+|参数名|类型|说明|
+|:-----  |:-----|-----|
+|badgeName |string   |粉丝徽章名称  |
+|content |string   |内容  |
+|fansLevel |string   |粉丝徽章等级  |
+|nobleLevel |string   |---  |
+|roomid |string   |---  |
+|sendNick |string   |昵称  |
+|senderAvatarUrl |string   |头像  |
+|senderGender |string   |---  |
+|showMode |string   |---  |
+
+注：在内容中会以 `/{dk` 的形式代表 “大哭” 的表情，需要转换成对应的表情
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -256,31 +332,21 @@ HLS地址:
 - 用户注册接口
 
 **请求URL：** 
-- ` http://xx.com/api/user/register `
+- ` /api/user/register `
   
 **请求方式：**
-- POST 
+- GET 
 
 **参数：** 
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |username |是  |string |用户名   |
-|password |是  |string | 密码    |
-|name     |否  |string | 昵称    |
 
  **返回示例**
 ```json
   {
-    "error_code": 0,
-    "data": {
-      "uid": "1",
-      "username": "12154545",
-      "name": "吴系挂",
-      "groupId": 2 ,
-      "reg_time": "1436864169",
-      "last_login_time": "0",
-    }
+    
   }
 ```
  **返回参数说明** 
@@ -291,4 +357,4 @@ HLS地址:
 
  **备注** 
 
-- 更多返回错误代码请看首页的错误代码描述
+- 更多返回错误代码请看开头的错误代码描述
