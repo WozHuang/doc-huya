@@ -309,7 +309,7 @@ wss://openapi.huya.com/index.html?do=getMessageNotice&data={"roomId":11342412}&a
 |senderGender |string   |---  |
 |showMode |string   |---  |
 
-注：在内容中会以 `/{dk` 的形式代表 “大哭” 的表情，需要转换成对应的表情
+注：在内容中会以 `/{dk` 的形式代表 “大哭” 的表情，需要转换成对应的表情，对应的地址是 `https://a.msstatic.com/huya/main/emot_png/dk.png`
 
 
 
